@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islam/ui/home/hadeth_tab/hadeth_tab.dart';
 import 'package:islam/ui/home/quran_tab/quran_tab.dart';
 import 'package:islam/ui/home/radio_tab/radio_tab.dart';
+import 'package:islam/ui/home/settings_tab/settings_tab.dart';
 import 'package:islam/ui/home/tasbeh_tab/tasbeh_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HadethTab(),
     TasbehTab(),
     RadioTab(),
+    SettingsTab()
   ];
 
   @override
@@ -56,6 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: Color(0xFFB7935F),
                 icon: ImageIcon(AssetImage('assets/images/radio_icon.png')),
                 label: "Radio"),
+            BottomNavigationBarItem(
+                backgroundColor: Color(0xFFB7935F),
+                icon: Icon(Icons.settings),
+                label: "Settings"),
           ],
         ),
         body: tabs[selectedIndexTab],

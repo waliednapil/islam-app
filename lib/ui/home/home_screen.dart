@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islam/ui/home/hadeth_tab/hadeth_tab.dart';
 import 'package:islam/ui/home/quran_tab/quran_tab.dart';
 import 'package:islam/ui/home/radio_tab/radio_tab.dart';
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'isalmi',
+            AppLocalizations.of(context)!.app_title,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           backgroundColor: Colors.transparent,
@@ -51,23 +52,23 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/quran_icon.png')),
-                label: "Quran"),
+                label: AppLocalizations.of(context)!.quran_tab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/hadeth_icon.png')),
-                label: "Hadeth"),
+                label: AppLocalizations.of(context)!.hadeth_tab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/sebha_icon.png')),
-                label: "Tasbeh"),
+                label: AppLocalizations.of(context)!.tasbeh_tab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/radio_icon.png')),
-                label: "Radio"),
+                label: AppLocalizations.of(context)!.radio_tab),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: Icon(Icons.settings),
-                label: "Settings"),
+                label: AppLocalizations.of(context)!.settings_tab),
           ],
         ),
         body: tabs[selectedIndexTab],

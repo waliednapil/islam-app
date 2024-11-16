@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islam/ui/home/hadeth_tab/hadeth_tab.dart';
+import 'package:islam/ui/styles/my_theme_data.dart';
 
 class HadethDetailsScreen extends StatelessWidget {
   static const String routName = 'Hadeth-details';
@@ -12,15 +13,21 @@ class HadethDetailsScreen extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('assets/images/main_background.png'))),
+              image: AssetImage(MyThemeData.isDarkSelected
+                  ? 'assets/images/main_background_dark.png'
+                  : 'assets/images/main_background.png'))),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Islami'),
+          title: Text(
+            'Islami',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
         ),
         body: Container(
           padding: EdgeInsets.all(22),
           child: SingleChildScrollView(
             child: Card(
+              color: Colors.transparent,
               shape: BeveledRectangleBorder(
                   borderRadius: BorderRadius.circular(32)),
               child: Column(
@@ -29,14 +36,12 @@ class HadethDetailsScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         args.title,
-                        style: TextStyle(
-                            fontSize: 26, fontWeight: FontWeight.bold),
-                      )),
+                          style: Theme.of(context).textTheme.titleMedium)),
                   Container(
                       padding: EdgeInsets.all(18),
                       child: Text(
                         args.content,
-                        style: TextStyle(fontSize: 18),
+                        style: Theme.of(context).textTheme.bodyMedium,
                         textDirection: TextDirection.rtl,
                       ))
                 ],

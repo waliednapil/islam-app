@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islam/ui/home/quran_tab/sura_name.dart';
 import 'package:islam/ui/home/screens/quran_details.dart';
-
-import '../quran_tab/sura_name.dart';
+import 'package:islam/ui/styles/my_theme_data.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   static const String routName = 'Sura-Details';
@@ -27,13 +27,19 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
         : Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/main_background.png'),
+                    image: AssetImage(MyThemeData.isDarkSelected
+                        ? 'assets/images/main_background_dark.png'
+                        : 'assets/images/main_background.png'),
                     fit: BoxFit.fill)),
             child: Scaffold(
               appBar: AppBar(
-                title: Text(args.title),
+                title: Text(
+                  args.title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               ),
               body: Card(
+                  color: Colors.transparent,
                   margin: EdgeInsets.all(26),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40)),
@@ -42,7 +48,6 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                       margin: EdgeInsets.symmetric(horizontal: 32),
                       width: double.infinity,
                       height: 2,
-                      color: Color(0xFFB7935F),
                     ),
                     itemBuilder: (context, index) => QuranDetails(
                       quranText: verses[index],
@@ -59,9 +64,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     List<String> suraLines = fileContent.split('\n');
     verses = suraLines;
 
-    for (int i = 0; i < suraLines.length; i++) {
-      print(verses[i]);
-    }
+    for (int i = 0; i < suraLines.length; i++) {}
     setState(() {});
   }
 }

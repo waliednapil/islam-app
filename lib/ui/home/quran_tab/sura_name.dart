@@ -26,7 +26,7 @@ class SuraName extends StatelessWidget {
             children: [
               Text(
                 suraName,
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
           )),

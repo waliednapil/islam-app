@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:islam/providers/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingProvider>(context);
     return Container(
       padding: EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          getSelectedItem('English'),
+          InkWell(
+              onTap: () {
+                settingsProvider.changLocal('en');
+              },
+              child: settingsProvider.currentLocal == 'en'
+                  ? getSelectedItem('English')
+                  : getUnSelectedItem('English')),
           SizedBox(
             height: 18,
           ),
-          getUnSelectedItem('Arabic'),
+          InkWell(
+              onTap: () {
+                settingsProvider.changLocal('ar');
+              },
+              child: settingsProvider.currentLocal == 'ar'
+                  ? getSelectedItem('Arabic')
+                  : getUnSelectedItem('Arabic')),
         ],
       ),
     );
@@ -40,10 +55,16 @@ class LanguageBottomSheet extends StatelessWidget {
   }
 
   Widget getUnSelectedItem(String text) {
-    return Text(
-      text,
-      style: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFB7935F)),
+    return Row(
+      children: [
+        Text(
+          text,
+          style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFFB7935F)),
+        ),
+      ],
     );
   }
 }

@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:islam/providers/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class ThemeBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingProvider>(context);
     return Container(
       padding: EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          getSelectedItem('Light'),
+          InkWell(
+              onTap: () {
+                settingsProvider.changTheme(ThemeMode.light);
+              },
+              child: settingsProvider.currentTheme == ThemeMode.light
+                  ? getSelectedItem('Light')
+                  : getUnSelectedItem('Light')),
           SizedBox(
             height: 18,
           ),
-          getUnSelectedItem('Dark'),
+          InkWell(
+              onTap: () {
+                settingsProvider.changTheme(ThemeMode.dark);
+              },
+              child: settingsProvider.currentTheme == ThemeMode.dark
+                  ? getSelectedItem('Dark')
+                  : getUnSelectedItem('Dark')),
         ],
       ),
     );
@@ -40,10 +55,16 @@ class ThemeBottomSheet extends StatelessWidget {
   }
 
   Widget getUnSelectedItem(String text) {
-    return Text(
-      text,
-      style: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFB7935F)),
+    return Row(
+      children: [
+        Text(
+          text,
+          style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFFB7935F)),
+        ),
+      ],
     );
   }
 }
